@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/profilestyle.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav__content">
+                <h2><a href="./index.html" style="color: black;">Blog</a></h2>
+                <div class="right">
+                    <h2>Hossam</h2>
+                    <a href="./Login">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="profile__user">
+        <div class="container">
+            <div class="blog__blogs">
+                <h3>My Blogs</h3>
+                <div class="blog__articles" id="articles">
+                    <form action="http://localhost:4000/user/update" method="post" class="modal" id="modal">
+                        <div class="header">
+                            <h4>Edit</h4>
+                            <i id="close" class="fa-solid fa-xmark"></i>
+                        </div>
+                        <label>Title</label>
+                        <input type="text" id="title" name="title">
+                        <label>Description</label>
+                        <input type="text" id="desc" name="desc">
+                        <input type="hidden" id="id" name="id">
+                        <input type="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    
+    //mixpanel.opt_out_tracking(true);
+    let close = document.getElementById("close")
+    close.onclick=function(){
+        document.getElementById("modal").style.display="none"
+    }
+    fetch('http://localhost:4000/user/blog').then(res=>
+        {
+            res.json().then(data=>
+            {
+                data.forEach(element => {
+                    let el = element.publisher
+                    console.log(element.date);
+      
+                 x=`${element.tags}`.split(",")
+
+                let articles=document.getElementById('articles')
+                let article=  document.createElement("div")
+                article.classList.add("article")
+                articles.appendChild(article)
+                let articleText=document.createElement("div")
+                articleText.classList.add("article__text")
+                article.appendChild(articleText)
+                let info = document.createElement("div")
+                info.classList.add("info")
+                articleText.appendChild(info)
+                let icon = document.createElement("i")
+                icon.classList.add("fa-solid")
+                icon.classList.add("fa-user")
+                info.appendChild(icon)
+                let h4 = document.createElement("h4")
+                h4.innerHTML = el.userName
+                info.appendChild(h4)
+             
+                let h2 = document.createElement("h2")
+                h2.innerHTML = element.title
+                articleText.appendChild(h2)
+                let p = document.createElement("p")
+                p.innerHTML=element.description
+                articleText.appendChild(p)
+                let tags = document.createElement("tags")
+                tags.classList.add("tags")
+                for(let i = 0;i<x.length;i++){
+                    let tag = document.createElement("a")
+                    tag.setAttribute("src","#")
+                    tag.innerHTML = x[i]
+                    tags.appendChild(tag)
+                }
+                articleText.appendChild(tags)
+
+                let ed_del = document.createElement("div")
+                ed_del.classList.add("ed_del")
+                // let createbutton = document.createElement("button")
+                articleText.appendChild(ed_del)
+                let iconEdit = document.createElement("i")
+                iconEdit.classList.add("fa-solid")
+                iconEdit.classList.add("fa-pen-to-square")
+                ed_del.appendChild(iconEdit)
+                let iconDel = document.createElement("i")
+                iconDel.classList.add("fa-regular")
+
+                iconDel.classList.add("fa-circle-xmark")
+                ed_del.appendChild(iconDel)
+                // button.appendChild(iconDel)
+                let id= element._id
+                iconDel.onclick=function(){
+                    fetch(`http://localhost:4000/user/delete/${id}`,
+                    {method:'delete'})
+                    window.location.reload()
+                }
+                iconEdit.onclick=function(){
+                    document.getElementById("modal").style.display="block"
+                    fetch(`http://localhost:4000/user/get/${id}`).then(res=>
+        {
+            res.json().then(data=>
+            {
+                data.forEach(element => {
+                    document.getElementById("title").value = element.title
+                    document.getElementById("desc").value = element.description
+                    document.getElementById("id").value = element._id
+                })
+        })
+        })
+        
+            }
+                
+
+
+                let image = document.createElement("div")
+                image.classList.add("image")
+                article.appendChild(image)
+                let img = document.createElement("img")
+                img.setAttribute("src",`./assets/images/${element.image}`)
+                image.appendChild(img)
+                            
+                });
+              
+            })
+
+        })
+
+</script>
+</html>

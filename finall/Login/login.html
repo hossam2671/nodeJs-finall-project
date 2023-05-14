@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Log in</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Log in</h2>
+        </div>
+        <form class="form" id="form" method="post" action="http://localhost:4000/user/login">
+            <div class="form-control">
+                <label for="">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small></small>
+            </div>
+            <div class="form-control">
+                <label for="">Password</label>
+                <input type="password" name="pass" id="pass" placeholder="Enter your password">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small></small>
+            </div>
+            <center><input type="submit" id="login-button" value="submit"></center>
+            <div class="account">
+                <a href="../forget/forget.html">Forget Password?</a>
+                <a href="../Signup/Signup.html">Create a new account</a>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="./assets/js/login.js"></script>
+</body>
+
+</html>

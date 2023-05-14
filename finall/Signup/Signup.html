@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Sign up</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Sign Up</h2>
+        </div>
+        <form class="form" id="form" action="http://localhost:4000/user/register" method="post">
+            <div class="form-control">
+                <label for="">Username</label>
+                <input type="text" name="uname" id="uname" placeholder="Enter your name">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small></small>
+            </div>
+            <div class="form-control">
+                <label for="">Email</label>
+                <input type="email" id="email" name="email" placeholder="example@gmail.com">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small></small>
+            </div>
+            <div class="form-control">
+                <label for="">Password</label>
+                <input type="password" name="pass" id="pass" placeholder="must be more than 8">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small></small>
+            </div>
+            <div class="form-control">
+                <label for="">Password confirm</label>
+                <input type="password" id="pass2" placeholder="confirm password">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small></small>
+            </div>
+            <center><input type="submit"></center>
+
+            <div class="account">
+                <a href="../forget/forget.html">Forget Password?</a>
+                <a href="../Login/login.html">Already have account? Log in</a>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="./assets/js/signup.js"></script>
+
+
+</body>
+
+</html>
